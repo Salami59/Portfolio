@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Imran El Moukhtari - Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="wrap" role="main">
+
+    <header>
+      <a class="brand" href="#">
+        <div class="logo">IE</div>
+        <div>
+          <div class="name">Imran El Moukhtari</div>
+          <div class="subtitle">Web & IT</div>
+        </div>
+      </a>
+
+      <nav class="nav">
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+        </label>
+
+        <div class="nav-menu">
+          <a href="index.html" class="active">HOME</a>
+          <a href="gallery.html">GALLERY</a>
+          <a href="about.html">ABOUT</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero">
+
+      <div class="panel main-section" id="home">
+        <h1>Welcome to my portfolio</h1>
+        <p class="lead">X</p>
+
+        <div id="gallery">
+          <h3>Gallery</h3>
+          <div class="gallery-preview">
+            <div class="thumb">C#</div>
+            <div class="thumb">Fullstack</div>
+            <div class="thumb">X</div>
+          </div>
+          <a class="gallery-link" href="/gallery.html">View full gallery →</a>
+        </div>
+      </div>
+
+      <aside class="panel contact-section contact-col">
+        <div>
+          <h3>Get In Touch</h3>
+          <p class="info">Have a project or question? Drop a short message below.</p>
+        </div>
+
+        <form id="contactForm" novalidate>
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Short message..."></textarea>
+          </div>
+
+          <button type="submit" class="send">Send Message</button>
+
+          <div class="error" id="err">Something went wrong... If this continues, contact me via email.</div>
+          <div class="success" id="ok">Message sent — thank you!</div>
+        </form>
+
+        <div class="contact-details">
+          <strong>Contact Details:</strong>
+          <div class="contact-text">
+            <div><a href="https://www.linkedin.com/in/imran-el-moukhtari-a69306369/"> 🔹LinkedIn</a></div>
+            <div><a href="mailto:elmoukhtari.imran1@gmail.com">📨 E-Mail</a></div>
+          </div>
+        </div>
+      </aside>
+
+    </section>
+
+    <footer>
+      Imran El Moukhtari © <span id="year"></span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

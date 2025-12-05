@@ -93,6 +93,12 @@ header{
   cursor:pointer;
 }
 
+.nav-menu a:hover {
+  text-shadow: 0 0 8px rgba(46, 229, 188, 0.4),
+               0 0 12px rgba(46, 229, 188, 0.4);
+  color: rgb(46, 229, 188); 
+}
+
 .nav-toggle-label span,
 .nav-toggle-label span::before,
 .nav-toggle-label span::after {

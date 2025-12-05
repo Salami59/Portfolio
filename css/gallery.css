@@ -88,6 +88,12 @@ header{
 .nav-toggle:checked + .nav-toggle-label span::before { transform:rotate(45deg); top:0; }
 .nav-toggle:checked + .nav-toggle-label span::after { transform:rotate(-45deg); top:0; }
 
+.nav-menu a:hover {
+  text-shadow: 0 0 8px rgba(46, 229, 188, 0.4),
+               0 0 12px rgba(46, 229, 188, 0.4);
+  color: rgb(46, 229, 188); 
+}
+
 .nav-menu {
   display:none;
   flex-direction:column;

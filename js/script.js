@@ -1,5 +1,7 @@
 const form = document.getElementById('contactForm');
 const submitBtn = form.querySelector('button[type="submit"]');
+const successMsg = document.getElementById('ok');
+const errorMsg = document.getElementById('err');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -8,16 +10,17 @@ form.addEventListener('submit', async (e) => {
     const email = document.getElementById("email").value.trim();
     const message = document.getElementById("message").value.trim();
 
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+
     if (!name || !email || !message) {
-      alert("❗Please fill in all required fields before sending❗");
-      return;
+        alert("❗Please fill in all required fields before sending❗");
+        return;
     }
 
     const formData = new FormData(form);
-    formData.append("access_key", "dbb62165-748c-4cfc-ab3b-c45dc315bd44");
 
     const originalText = submitBtn.textContent;
-
     submitBtn.textContent = "Sending...";
     submitBtn.disabled = true;
 
@@ -30,14 +33,16 @@ form.addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (response.ok) {
-            alert("Success! Your message has been sent.");
+            successMsg.style.display = 'block';
             form.reset();
         } else {
-            alert("Error: " + data.message);
+            errorMsg.style.display = 'block';
+            console.error("Error:", data.message);
         }
 
     } catch (error) {
-        alert("Something went wrong. Please try again.");
+        errorMsg.style.display = 'block';
+        console.error(error);
     } finally {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;

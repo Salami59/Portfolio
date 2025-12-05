@@ -56,3 +56,14 @@ form.addEventListener("submit", async e => {
     err.style.display = "block";
   }
 });
+
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent default form submission
+
+  emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+    .then(function() {
+      alert('Message sent successfully!');
+    }, function(error) {
+      alert('Oops… something went wrong: ' + JSON.stringify(error));
+    });
+});

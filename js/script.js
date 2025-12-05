@@ -1,69 +1,36 @@
-// year
-document.getElementById("year").textContent = new Date().getFullYear();
+const form = document.getElementById('form');
+const submitBtn = form.querySelector('button[type="submit"]');
 
-// smooth scroll + active nav
-document.querySelectorAll("nav a, .gallery-link").forEach(a => {
-  a.addEventListener("click", e => {
-    const href = a.getAttribute("href");
-    if (href && href.startsWith("#")) {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) target.scrollIntoView({ behavior: "smooth" });
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-      document.querySelectorAll("nav a").forEach(x => x.classList.remove("active"));
-      a.classList.add("active");
+    const formData = new FormData(form);
+    formData.append("access_key", "dbb62165-748c-4cfc-ab3b-c45dc315bd44");
+
+    const originalText = submitBtn.textContent;
+
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Success! Your message has been sent.");
+            form.reset();
+        } else {
+            alert("Error: " + data.message);
+        }
+
+    } catch (error) {
+        alert("Something went wrong. Please try again.");
+    } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
     }
-  });
-});
-
-// contact form (fake backend simulation)
-const form = document.getElementById("contactForm");
-const err = document.getElementById("err");
-const ok = document.getElementById("ok");
-
-form.addEventListener("submit", async e => {
-  e.preventDefault();
-  err.style.display = "none";
-  ok.style.display = "none";
-
-  const name = form.name.value.trim();
-  const email = form.email.value.trim();
-
-  if (!name || !email) {
-    err.textContent = "Please enter your name and a valid email address.";
-    err.style.display = "block";
-    return;
-  }
-
-  const emailRe = /^[^@]+@[^@]+\.[^@]+$/;
-  if (!emailRe.test(email)) {
-    err.textContent = "Please enter a valid email address.";
-    err.style.display = "block";
-    return;
-  }
-
-  // simulate sending
-  try {
-    await new Promise(res => setTimeout(res, 600));
-    if (Math.random() < 0.85) {
-      ok.style.display = "block";
-      form.reset();
-    } else {
-      throw new Error("server");
-    }
-  } catch {
-    err.textContent = "Something went wrong... Please contact me directly via email.";
-    err.style.display = "block";
-  }
-});
-
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent default form submission
-
-  emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
-    .then(function() {
-      alert('Message sent successfully!');
-    }, function(error) {
-      alert('Oops… something went wrong: ' + JSON.stringify(error));
-    });
 });

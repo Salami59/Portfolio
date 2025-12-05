@@ -18,6 +18,31 @@ body{
   line-height:1.45;
 }
 
+.gallery-preview {
+  display: flex;
+  gap: 20px;
+}
+
+.thumb {
+  transition: .35s ease;
+  cursor: pointer;
+}
+
+.gallery-preview .thumb:nth-child(1):hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(46, 229, 188, 0.4);
+}
+
+.gallery-preview .thumb:nth-child(2):hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(46, 229, 188, 0.4);
+}
+
+.gallery-preview .thumb:nth-child(3):hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(46, 229, 188, 0.4);
+}
+
 .wrap{
   max-width:var(--max-width);
   margin:36px auto;

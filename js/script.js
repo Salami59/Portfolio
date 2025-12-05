@@ -1,8 +1,17 @@
-const form = document.getElementById('form');
+const form = document.getElementById('contactForm');
 const submitBtn = form.querySelector('button[type="submit"]');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (!name || !email || !message) {
+      alert("❗Please fill in all required fields before sending❗");
+      return;
+    }
 
     const formData = new FormData(form);
     formData.append("access_key", "dbb62165-748c-4cfc-ab3b-c45dc315bd44");
@@ -33,16 +42,4 @@ form.addEventListener('submit', async (e) => {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
     }
-});
-
-document.getElementById("contactForm").addEventListener("submit", function (e) {
-
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const message = document.getElementById("message").value.trim();
-
-  if (!name || !email || !message) {
-    e.preventDefault(); 
-    alert("❗Please fill in all required fields before sending❗");
-  }
 });

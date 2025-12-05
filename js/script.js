@@ -10,15 +10,19 @@ form.addEventListener('submit', async (e) => {
     const email = document.getElementById("email").value.trim();
     const message = document.getElementById("message").value.trim();
 
+    // Hide messages initially
     successMsg.style.display = 'none';
     errorMsg.style.display = 'none';
 
+    // REQUIRED FIELD VALIDATION
     if (!name || !email || !message) {
-        alert("❗Please fill in all required fields before sending❗");
-        return;
+        errorMsg.textContent = "❗Please fill in ALL required fields before sending!❗";
+        errorMsg.style.display = 'block';
+        return; // Stop submission
     }
 
     const formData = new FormData(form);
+    // access_key is already in the HTML, so no need to append it here
 
     const originalText = submitBtn.textContent;
     submitBtn.textContent = "Sending...";
@@ -33,14 +37,16 @@ form.addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (response.ok) {
+            successMsg.textContent = "✅ Message sent — thank you!";
             successMsg.style.display = 'block';
             form.reset();
         } else {
+            errorMsg.textContent = "❌ Something went wrong: " + data.message;
             errorMsg.style.display = 'block';
-            console.error("Error:", data.message);
         }
 
     } catch (error) {
+        errorMsg.textContent = "❌ Something went wrong. Please try again.";
         errorMsg.style.display = 'block';
         console.error(error);
     } finally {

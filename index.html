@@ -80,9 +80,11 @@
 
     <button type="submit" class="send">Send Message</button>
 
-    <div class="error" id="err">Something went wrong... If this continues, contact me via email.</div>
-    <div class="success" id="ok">Message sent — thank you!</div>
+    <div class="error" id="err" style="display:none;">Something went wrong... If this continues, contact me via email.</div>
+    <div class="success" id="ok" style="display:none;">Message sent — thank you!</div>
   </form>
+
+   <script src="script.js"></script>
 
   <div class="contact-details">
     <strong>Contact Details:</strong>
@@ -99,13 +101,6 @@
       Imran El Moukhtari © <span id="year"></span>
     </footer>
   </div>
-
-
-  <script type="text/javascript" src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
-  <script type="text/javascript">
-     emailjs.init("YOUR_PUBLIC_KEY");
-  </script>
-
-  <script src="script.js"></script>
+ 
 </body>
 </html>

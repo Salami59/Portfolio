@@ -10,20 +10,16 @@ form.addEventListener('submit', async (e) => {
     const email = document.getElementById("email").value.trim();
     const message = document.getElementById("message").value.trim();
 
-    // Hide messages initially
     successMsg.style.display = 'none';
     errorMsg.style.display = 'none';
 
-    // REQUIRED FIELD VALIDATION
     if (!name || !email || !message) {
         errorMsg.textContent = "❗Please fill in ALL required fields before sending!❗";
         errorMsg.style.display = 'block';
-        return; // Stop submission
+        return;
     }
 
     const formData = new FormData(form);
-    // access_key is already in the HTML, so no need to append it here
-
     const originalText = submitBtn.textContent;
     submitBtn.textContent = "Sending...";
     submitBtn.disabled = true;

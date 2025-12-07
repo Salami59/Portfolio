@@ -16,13 +16,13 @@ form.addEventListener('submit', async (e) => {
     if (!name || !email || !message) {
         errorMsg.textContent = "❗Please fill in ALL required fields before sending!❗";
         errorMsg.style.display = 'block';
-        return;
+        return false;
     }
 
-    const formData = new FormData(form);
-    const originalText = submitBtn.textContent;
     submitBtn.textContent = "Sending...";
     submitBtn.disabled = true;
+
+    const formData = new FormData(form);
 
     try {
         const response = await fetch("https://api.web3forms.com/submit", {
@@ -40,13 +40,11 @@ form.addEventListener('submit', async (e) => {
             errorMsg.textContent = "❌ Something went wrong: " + data.message;
             errorMsg.style.display = 'block';
         }
-
-    } catch (error) {
+    } catch (err) {
         errorMsg.textContent = "❌ Something went wrong. Please try again.";
         errorMsg.style.display = 'block';
-        console.error(error);
     } finally {
-        submitBtn.textContent = originalText;
+        submitBtn.textContent = "Send Message";
         submitBtn.disabled = false;
     }
 });
